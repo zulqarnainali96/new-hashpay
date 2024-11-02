@@ -10,9 +10,6 @@ const MainContainer = ({ walletState }) => {
     const showmenu = useSelector(state => state.Authreducer.showmenu)
     const { userData, } = walletState;
 
-    console.log(userData)
-    console.log(showmenu)
-
     return (
         <SafeAreaView
             style={styles.Container}

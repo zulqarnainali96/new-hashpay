@@ -234,7 +234,7 @@ const Screen3 = ({ walletState, walletActions, navigation }) => {
     }, 500);
   }
   function handleLogin() {
-    console.log(loginpassword);
+    // console.log(loginpassword);
     if (loginpassword !== userData[0].password) {
       alert("Password not Found");
       return;

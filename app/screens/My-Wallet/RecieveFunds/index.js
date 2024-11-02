@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   Share,
+  Dimensions,
 } from "react-native";
 import { Text as TextPaper } from "react-native-paper";
 import React, { useState } from "react";
@@ -20,6 +21,8 @@ import { useDispatch } from "react-redux";
 import * as Clipboard from "expo-clipboard";
 import SvgQRCode from "react-native-qrcode-svg";
 import { ToastAndroid } from "react-native";
+const ScreenHeight = Dimensions.get("window").height;
+// const qrCode = require("../../../../assets/my-wallet/qrcode.png");
 const share = require("../../../../assets/images/share.png");
 const copy2 = require("../../../../assets/images/copy-2.png");
 const alert = require("../../../../assets/images/alert.png");
@@ -93,7 +96,7 @@ const ReceiveFunds = ({ walletState, navigation }) => {
       showsVerticalScrollIndicator={false}
     >
       <View style={styles.qrCode}>
-        <View style={{ fle: 1 }}>
+        <View style={{ flex: .8, height: 130, justifyContent: "center", alignItems: 'center' }}>
           {/* <Image resizeMethod="auto" resizeMode="center" source={qrCode} style={styles.qrCodeImage} /> */}
           <SvgQRCode value={walletState.address} size={120} />
         </View>
@@ -205,14 +208,14 @@ const ReceiveFunds = ({ walletState, navigation }) => {
                 fontFamily: "Doppio_One_regular",
                 textDecorationLine: "underline",
                 lineHeight: 21,
-                color: "#3a1278"
+                color: "#3a1278",
               }}
             >
               View more
             </TextPaper>
           </TouchableOpacity>
         </View>
-        <View style={{ flex: 1, width: "100%"}}>
+        <View style={{ flex: 1, width: "100%" }}>
           {data.length ? (
             data.map((item, index) => {
               return (
@@ -243,9 +246,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 17,
     alignContent: "center",
     backgroundColor: "white",
+    // height: ScreenHeight,
   },
   qrCode: {
-    flex: 1,
+    // flex: .8,
     flexDirection: "row",
     width: "100%",
   },

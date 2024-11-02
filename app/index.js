@@ -13,7 +13,6 @@ const theme = {
     color: DefaultTheme.colors,
     backgroundColor: "transparent",
 };
-console.log(theme.color);
 
 export default function Index() {
 

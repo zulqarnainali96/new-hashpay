@@ -17,7 +17,7 @@ import { Button } from "react-native-paper";
 import { styles } from "../setting";
 import colors from "../../utils/colors";
 import * as Animatable from "react-native-animatable";
-import * as ImagePicker from "expo-image-picker";
+// import * as ImagePicker from "expo-image-picker";
 import WalletContainer from "../../redux/Containers/containers";
 
 const person_pic = require("../../../assets/images/profile-pic.png");
@@ -67,9 +67,9 @@ const Collapsable = ({ navigation, seed }) => {
 
 const { width } = Dimensions.get("window");
 const Profile = ({ walletState, navigation, walletActions }) => {
-  const bottomSheetRef = useRef(null);
-  const [selectedImages, setSelectedImages] = useState([]);
-  const [imageUri, setImageUri] = useState(null);
+  // const bottomSheetRef = useRef(null);
+  // const [selectedImages, setSelectedImages] = useState([]);
+  // const [imageUri, setImageUri] = useState(null);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const animatedArrow = useRef(new Animated.Value(0)).current;
   let fname = walletState.userData[0]?.firstname;
@@ -99,45 +99,45 @@ const Profile = ({ walletState, navigation, walletActions }) => {
   if (Platform.OS === "android") {
     UIManager.setLayoutAnimationEnabledExperimental(true);
   }
-  const openBottomSheet = () => {
-    bottomSheetRef.current.open();
-  };
+  // const openBottomSheet = () => {
+  //   bottomSheetRef.current.open();
+  // };
 
-  const handleRecentPicturesPress = () => {
-    setSelectedImages([]);
+  // const handleRecentPicturesPress = () => {
+  //   setSelectedImages([]);
     // bottomSheetRef.current.snapTo(1);
-  };
+  // };
 
-  const handlePress = async () => {
-    try {
-      let result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Images,
-        allowsEditing: true,
-        aspect: [5, 7],
-        quality: 1,
-      });
-      // console.log(result);
-      if (!result.canceled) {
-        console.log(result.assets[0].uri);
-        setImageUri(result.assets[0].uri);
-        // walletState.userData.push({imageURI : [result.assets[0].uri]})
-      }
-    } catch (error) {
-      console.log("Error : ", error);
-    }
-  };
-  const handleSelectPicturesPress = async () => {
-    try {
-      const images = ImagePicker.openPicker({
-        multiple: true,
-        mediaType: "photo",
-      });
-      setSelectedImages(images);
-      bottomSheetRef.current.snapTo(1);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const handlePress = async () => {
+  //   try {
+  //     let result = await ImagePicker.launchImageLibraryAsync({
+  //       mediaTypes: ImagePicker.MediaTypeOptions.Images,
+  //       allowsEditing: true,
+  //       aspect: [5, 7],
+  //       quality: 1,
+  //     });
+  //     // console.log(result);
+  //     if (!result.canceled) {
+  //       console.log(result.assets[0].uri);
+  //       setImageUri(result.assets[0].uri);
+  //       // walletState.userData.push({imageURI : [result.assets[0].uri]})
+  //     }
+  //   } catch (error) {
+  //     console.log("Error : ", error);
+  //   }
+  // };
+  // const handleSelectPicturesPress = async () => {
+  //   try {
+  //     const images = ImagePicker.openPicker({
+  //       multiple: true,
+  //       mediaType: "photo",
+  //     });
+  //     setSelectedImages(images);
+  //     bottomSheetRef.current.snapTo(1);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   // console.log(imageUri);
   return (
     <View style={[styles.Container]}>

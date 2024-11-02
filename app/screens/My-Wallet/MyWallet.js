@@ -38,6 +38,7 @@ const MyWallet = ({ walletState, walletActions, navigation }) => {
   const [kusdNairabalance, setKusdNairaBalance] = useState();
   const [hashNairabalance, setHashNairaBalance] = useState();
   const [kssNairabalance, setKssNairaBalance] = useState();
+  const [nairaBalance, setNairaBalance] = useState(1700);
 
   var nairabalance = 0;
 
@@ -121,13 +122,13 @@ const MyWallet = ({ walletState, walletActions, navigation }) => {
   const NairaBalanceCall = () => {
     dispatch(showDropdownfunc(false));
     setKusdNairaBalance(
-      Number(Math.round((walletState.kusd_balance / 10 ** 6) * 750 * 10) / 10)
+      Number(Math.round((walletState.kusd_balance / 10 ** 6) * nairaBalance * 10) / 10)
     );
     setHashNairaBalance(
       Number(Math.round((walletState.hash_balance / 10 ** 6) * 1 * 10) / 10)
     );
     setKssNairaBalance(
-      Number(Math.round((walletState.kss_balance / 10 ** 8) * 750 * 10) / 10)
+      Number(Math.round((walletState.kss_balance / 10 ** 8) * nairaBalance * 10) / 10)
     );
   };
   useEffect(() => {
@@ -241,7 +242,7 @@ const MyWallet = ({ walletState, walletActions, navigation }) => {
               color: colors.dropDowngraytextcolor,
             }}
           >
-            Current Price: 750 Naira
+            Current Price: {nairaBalance} Naira
           </TextPaper>
         </View>
         <View style={styles.box1}>
@@ -294,7 +295,7 @@ const MyWallet = ({ walletState, walletActions, navigation }) => {
               color: colors.dropDowngraytextcolor,
             }}
           >
-            Current Price: 1 Naira
+            Current Price: {" "} 1 Naira
           </TextPaper>
         </View>
         <View style={styles.box1}>
@@ -347,7 +348,7 @@ const MyWallet = ({ walletState, walletActions, navigation }) => {
               color: colors.dropDowngraytextcolor,
             }}
           >
-            Current Price: 750 Naira
+            Current Price: {nairaBalance} Naira
           </TextPaper>
         </View>
       </View>
@@ -565,6 +566,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.dropDowngray,
     borderRadius: 5,
     padding: 7,
+    paddingHorizontal: 14
   },
   box1inside: {
     flex: 0.7,

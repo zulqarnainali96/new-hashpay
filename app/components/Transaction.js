@@ -85,7 +85,7 @@ const Transaction = ({ data, address, mapId, nickname }) => {
       setUserAlias(alias.slice(8, alias.length));
     }
     else {
-     setUserAlias(recipient) 
+      setUserAlias(recipient)
     }
     return "";
   };
@@ -107,7 +107,7 @@ const Transaction = ({ data, address, mapId, nickname }) => {
     // AliasForMassTransfer();
     getMassAdress();
   }, []);
-  
+
   function getReceiveMassTransferAmount() {
     let amount;
     if (sender !== address && data.hasOwnProperty("transfers")) {
@@ -120,7 +120,7 @@ const Transaction = ({ data, address, mapId, nickname }) => {
       return {
         amount: amount.amount / 10 ** getAssetDecimal(),
         recipient: sender?.length > 32 ? sender
-            : sender.slice(8, sender?.length),
+          : sender.slice(8, sender?.length),
       };
     }
   }
@@ -167,28 +167,28 @@ const Transaction = ({ data, address, mapId, nickname }) => {
           <View style={{ width: 210, flex: 1, paddingHorizontal: 3 }}>
             {sender === address && !data.hasOwnProperty("transfers") ? (
               <TextPaper
-                style={{ fontWeight: "700", fontSize: 12, marginBottom: 3 }}
+                style={{ fontWeight: "700", fontSize: 12, marginBottom: 3, color : '#000' }}
               >
                 Transfer To:
               </TextPaper>
             ) : null}
             {sender !== address && !data.hasOwnProperty("transfers") ? (
               <TextPaper
-                style={{ fontWeight: "700", fontSize: 12, marginBottom: 3 }}
+                style={{ fontWeight: "700", fontSize: 12, marginBottom: 3, color: '#000' }}
               >
                 Recieved From:
               </TextPaper>
             ) : null}
             {sender === address && data.hasOwnProperty("transfers") ? (
               <TextPaper
-                style={{ fontWeight: "700", fontSize: 12, marginBottom: 3 }}
+                style={{ fontWeight: "700", fontSize: 12, marginBottom: 3, color : '#000' }}
               >
                 Mass Transfer to:
               </TextPaper>
             ) : null}
 
             {sender !== address && data.hasOwnProperty("transfers") ? (
-              <TextPaper style={{ fontWeight: "700", fontSize: 12 }}>
+              <TextPaper style={{ fontWeight: "700", fontSize: 12, color: '#000' }}>
                 Recieved From :
               </TextPaper>
             ) : null}
@@ -202,7 +202,7 @@ const Transaction = ({ data, address, mapId, nickname }) => {
                 style={{ fontSize: 10, width: "100%" }}
               >
                 <View style={{ flexDirection: "row", gap: 6 }}>
-                  <Text style={{ fontSize: 10 }}>{recipientAlias.length > 32 ? recipientAlias.slice(0,8) : recipientAlias}</Text>
+                  <Text style={{ fontSize: 10 }}>{recipientAlias.length > 32 ? recipientAlias.slice(0, 8) : recipientAlias}</Text>
                   <TouchableOpacity onPress={() => fetchCopiedText(recipientAlias)}>
                     <Image
                       source={CopyImage}
@@ -220,7 +220,7 @@ const Transaction = ({ data, address, mapId, nickname }) => {
                 style={{ fontSize: 10, width: "100%" }}
               >
                 <View style={{ flexDirection: "row", gap: 6 }}>
-                  <Text style={{ fontSize: 10 }}>{senderAlias.length > 32 ? senderAlias.slice(0,8) : senderAlias}</Text>
+                  <Text style={{ fontSize: 10 }}>{senderAlias.length > 32 ? senderAlias.slice(0, 8) : senderAlias}</Text>
                   <TouchableOpacity onPress={() => fetchCopiedText(senderAlias)}>
                     <Image
                       source={CopyImage}
@@ -241,22 +241,22 @@ const Transaction = ({ data, address, mapId, nickname }) => {
               >
                 {data.transfers?.length
                   ? data.transfers.map((list, i) => (
-                      <View key={i} style={{ flexDirection: "row", gap: 6 }}>
-                        <Text style={{ fontSize: 10 }}>
-                          {list.recipient.length > 33
-                            ? list.recipient.slice(0, 8)
-                            : list.recipient.slice(8, list.recipient.length)}
-                        </Text>
-                        <TouchableOpacity
-                          onPress={() => fetchCopiedText(list.recipient)}
-                        >
-                          <Image
-                            source={CopyImage}
-                            style={{ width: 15, height: 16 }}
-                          />
-                        </TouchableOpacity>
-                      </View>
-                    ))
+                    <View key={i} style={{ flexDirection: "row", gap: 6 }}>
+                      <Text style={{ fontSize: 10 }}>
+                        {list.recipient.length > 33
+                          ? list.recipient.slice(0, 8)
+                          : list.recipient.slice(8, list.recipient.length)}
+                      </Text>
+                      <TouchableOpacity
+                        onPress={() => fetchCopiedText(list.recipient)}
+                      >
+                        <Image
+                          source={CopyImage}
+                          style={{ width: 15, height: 16 }}
+                        />
+                      </TouchableOpacity>
+                    </View>
+                  ))
                   : null}
               </TextPaper>
             ) : null}
@@ -271,7 +271,7 @@ const Transaction = ({ data, address, mapId, nickname }) => {
               >
                 <View style={{ flexDirection: "row", gap: 6 }}>
                   <Text style={{ fontSize: 10 }}>
-                    {getReceiveMassTransferAmount().recipient.slice(0,8)}
+                    {getReceiveMassTransferAmount().recipient.slice(0, 8)}
                   </Text>
                   <TouchableOpacity onPress={() => fetchCopiedText(getReceiveMassTransferAmount().recipient)}>
                     <Image
@@ -283,63 +283,8 @@ const Transaction = ({ data, address, mapId, nickname }) => {
               </TextPaper>
             ) : null}
 
-            {/* {data.transfers?.length
-                  ? data.transfers.map((list, i) => (
-                      <View key={i} style={{ flexDirection: "row", gap: 6 }}>
-                        <Text style={{ fontSize: 10 }}>
-                          {list.recipient.length > 33
-                            ? list.recipient.slice(0, 8)
-                            : list.recipient.slice(8, list.recipient.length)}
-                        </Text>
-                        <TouchableOpacity
-                          onPress={() => fetchCopiedText(list.recipient)}
-                        >
-                          <Image
-                            source={CopyImage}
-                            style={{ width: 15, height: 16 }}
-                          />
-                        </TouchableOpacity>
-                      </View>
-                    ))
-                  : null} */}
-            {/* 
-                {data.transfers?.length && sender === address ? null : recipientAlias.length ? (
-                  <View style={{ flexDirection: "row", gap: 6 }}>
-                    <Text style={{ fontSize: 10 }}>{recipientAlias}</Text>
-                    <TouchableOpacity
-                      onPress={() => fetchCopiedText(recipientAlias)}
-                    >
-                      <Image
-                        source={CopyImage}
-                        style={{ width: 15, height: 13 }}
-                      />
-                    </TouchableOpacity>
-                  </View>
-                ) : (
-                  <View style={{ flexDirection: "row", gap: 6 }}>
-                    <Text style={{ fontSize: 10 }}>
-                      {recipient.slice(0, 8)}
-                    </Text>
-                    <TouchableOpacity
-                      onPress={() => fetchCopiedText(recipient)}
-                    >
-                      <Image
-                        style={{ width: 15, height: 13 }}
-                        source={CopyImage}
-                      />
-                    </TouchableOpacity>
-                  </View>
-                )}
-              </TextPaper>
-            ) : sender !== address && data.transfers?.length ? (
-              <TextPaper
-                adjustsFontSizeToFit={true}
-                allowFontScaling={true}
-                style={{ fontSize: 10, textAlign: "auto" }}
-              > */}
-
             <View style={styles.marginSet} />
-            <TextPaper style={{ fontWeight: "700", fontSize: 12 }}>
+            <TextPaper style={{ fontWeight: "700", fontSize: 12, color : '#000' }}>
               Txid
             </TextPaper>
             <TextPaper
@@ -358,7 +303,7 @@ const Transaction = ({ data, address, mapId, nickname }) => {
             <TextPaper
               adjustsFontSizeToFit={true}
               allowFontScaling={true}
-              style={{ fontSize: 10, textAlign: "auto" }}
+              style={{ fontSize: 10, textAlign: "auto", color : '#000' }}
             >
               {dateFormat}
             </TextPaper>
@@ -418,6 +363,7 @@ const Transaction = ({ data, address, mapId, nickname }) => {
               textDecorationLine: "underline",
               fontWeight: "700",
               marginHorizontal: 10,
+              color : '#000'
             }}
           >
             View on Explorer
